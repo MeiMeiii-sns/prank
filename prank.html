@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Portal</title>
+    <style>
+        /* General Page Styling */
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #121212;
+            color: white;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            overflow: hidden;
+        }
+
+        /* Login Box Styling */
+        #login-container {
+            background-color: #1e1e1e;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+            text-align: center;
+            display: block; /* Visible by default */
+        }
+
+        h2 { margin-top: 0; }
+
+        input[type="password"] {
+            padding: 10px;
+            width: 80%;
+            margin-bottom: 20px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        button {
+            padding: 10px 25px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        button:hover { background-color: #0056b3; }
+
+        #error-msg {
+            color: #ff4d4d;
+            margin-top: 15px;
+            height: 20px;
+        }
+
+        /* 3D Animated Message Styling */
+        #message-container {
+            display: none; /* Hidden by default */
+            text-align: center;
+        }
+
+        .animated-3d-text {
+            font-size: 6rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            color: #fff;
+            /* Creating the 3D shadow effect */
+            text-shadow: 
+                0 1px 0 #cccccc,
+                0 2px 0 #c9c9c9,
+                0 3px 0 #bbbbbb,
+                0 4px 0 #b9b9b9,
+                0 5px 0 #aaaaaa,
+                0 6px 1px rgba(0,0,0,0.1),
+                0 0 5px rgba(0,0,0,0.1),
+                0 1px 3px rgba(0,0,0,0.3),
+                0 3px 5px rgba(0,0,0,0.2),
+                0 5px 10px rgba(0,0,0,0.25),
+                0 10px 10px rgba(0,0,0,0.2),
+                0 20px 20px rgba(0,0,0,0.15);
+            /* Applying the animation */
+            animation: bounceAndSpin 2s infinite ease-in-out;
+        }
+
+        /* Keyframes for the bouncing 3D animation */
+        @keyframes bounceAndSpin {
+            0%, 100% {
+                transform: translateY(0) scale(1);
+                color: #ffffff;
+            }
+            50% {
+                transform: translateY(-30px) scale(1.1);
+                color: #ff3b3b; /* Flashes red at the peak */
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div id="login-container">
+        <h2>Enter Password</h2>
+        <input type="password" id="password-input" placeholder="Password">
+        <br>
+        <button onclick="checkPassword()">Login</button>
+        <p id="error-msg"></p>
+    </div>
+
+    <div id="message-container">
+        <h1 class="animated-3d-text">YOU ARE AN IDIOT</h1>
+    </div>
+
+    <script>
+        function checkPassword() {
+            // Get the value the user typed in
+            const input = document.getElementById("password-input").value;
+            const errorMsg = document.getElementById("error-msg");
+            const loginBox = document.getElementById("login-container");
+            const messageBox = document.getElementById("message-container");
+
+            // Check if it matches the required password
+            if (input === "6192001") {
+                // Hide the login box and show the 3D text
+                loginBox.style.display = "none";
+                messageBox.style.display = "block";
+            } else {
+                // Show an error message
+                errorMsg.innerText = "Incorrect password. Try again.";
+                document.getElementById("password-input").value = ""; // clear the input
+            }
+        }
+
+        // Allow pressing "Enter" to submit the password
+        document.getElementById("password-input").addEventListener("keypress", function(event) {
+            if (event.key === "Enter") {
+                checkPassword();
+            }
+        });
+    </script>
+
+</body>
+</html>
